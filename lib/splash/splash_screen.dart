@@ -1,6 +1,7 @@
-import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,14 +12,13 @@ class _SplashScreenState extends State<SplashScreen> {
   var windoWidth;
   var windowHeight;
 
-  startTime() {
-    var duration = new Duration(seconds: 3);
-    return Timer(
-      duration,
-      () {
-        Navigator.popAndPushNamed(context, '/home');
-      },
-    );
+  @override
+  Void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIOverlays([]);
+    Future.delayed(Duration(seconds: 4)).then((_) {
+      Navigator.pushNamed(context, '/home');
+    });
   }
 
   @override
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         children: [
           Container(
-            color: Colors.white,
+            color: Colors.purple,
           ),
           Center(
             child: Column(
@@ -41,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     width: windoWidth * 0.4,
                     child: Image.asset(
                       'assets/splash.png',
+                      color: Colors.white,
                       fit: BoxFit.cover,
                     ),
                   ),

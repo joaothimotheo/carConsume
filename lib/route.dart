@@ -7,15 +7,4 @@ class AppRoute {
     "/splash": SplashScreen(),
     "/home": HomeScreen(),
   };
-
-  List<StatefulWidget> _stack = [];
-  int _seconds = 0;
-
-  setDuration(int seconds) {
-    _seconds = seconds;
-  }
-
-  disposeLast() {
-    if (_stack.isNotEmpty) _stack.removeLast();
-  }
 }
